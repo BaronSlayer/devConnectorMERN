@@ -4,15 +4,15 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 // Validate inputs
-const validateProfileInput = require('../../validation/profile');
-const validateExperienceInput = require('../../validation/experience');
-const validateEducationInput = require('../../validation/education');
+const validateProfileInput = require('../../validation/profileValidation');
+const validateExperienceInput = require('../../validation/experienceValidation');
+const validateEducationInput = require('../../validation/educationValidation');
 
 // Load profile model
-const Profile = require('../../models/Profile');
+const Profile = require('../../models/profileModel');
 
 // Load user model
-const User = require('../../models/User');
+const User = require('../../models/userModel');
 
 
 // @route   GET api/profile/test
