@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://mmpisa02:8Djctvm*@cluster0-n1y2w.mongodb.net/devconnector?retryWrites=true",
+    "jwtSecret": "authtoken"
+}
