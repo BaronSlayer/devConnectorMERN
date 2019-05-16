@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-// import { setAlert } from "../../actions/alertAction";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 
@@ -39,7 +38,7 @@ const Login = ({ login, isAuthenticated }) => {
 						name="email"
 						value={email}
 						onChange={e => onChange(e)}
-						// required
+					// required
 					/>
 				</div>
 				<div className="form-group">
@@ -50,7 +49,7 @@ const Login = ({ login, isAuthenticated }) => {
 						// minLength="6"
 						value={password}
 						onChange={e => onChange(e)}
-						// required
+					// required
 					/>
 				</div>
 				<input type="submit" className="btn btn-primary" value="Login" />

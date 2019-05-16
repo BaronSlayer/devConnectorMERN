@@ -14,6 +14,9 @@ const Profile = require('../../models/profileModel');
 // Load User model
 const User = require('../../models/userModel');
 
+// Load Post model
+const Post = require('../../models/postModel');
+
 // @route   GET api/profile/me
 // @desc    Get current user profile route
 // @access  Private
@@ -176,20 +179,16 @@ router.get('/user/:user_id', async (request, response) => {
 router.delete('/', auth, async (request, response) => {
 
     try {
+        // delete posts
+        await Post.deleteMany({ user: request.user.id });
 
         // delete profile
-        await Profile.findOneAndRemove({
-            user: request.user.id
-        });
+        await Profile.findOneAndRemove({ user: request.user.id });
 
         // delete user
-        await User.findOneAndRemove({
-            _id: request.user.id
-        });
+        await User.findOneAndRemove({ _id: request.user.id });
 
-        response.json({
-            message: 'User has been deleted'
-        });
+        response.json({ message: 'User has been deleted' });
 
     } catch (err) {
 
