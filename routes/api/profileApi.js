@@ -99,13 +99,11 @@ router.post('/', [auth, [
 
         if (profile) {
 
-            profile = await Profile.findOneAndUpdate({
-                user: request.user.id
-            }, {
-                $set: profileFields
-            }, {
-                new: true
-            });
+            profile = await Profile.findOneAndUpdate(
+                { user: request.user.id },
+                { $set: profileFields },
+                { new: true }
+            );
 
             return response.json(profile);
 
