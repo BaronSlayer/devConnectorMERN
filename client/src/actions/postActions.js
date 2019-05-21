@@ -6,7 +6,9 @@ import {
     UPDATE_LIKES,
     DELETE_POST,
     ADD_POST,
-    GET_ONE_POST
+    GET_ONE_POST,
+    ADD_COMMENT,
+    REMOVE_COMMENT
 } from './types';
 
 // get posts
@@ -154,3 +156,59 @@ export const getOnePost = id => async dispatch => {
 
     }
 };
+
+// add comment
+
+export const addComment = (postId, formData) => async dispatch => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+
+        const res = await axios.post(`/api/posts/comment/${postId}`, formData, config);
+
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Comment has been added', 'success'))
+
+    } catch (err) {
+
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+};
+
+// delete comment
+
+export const deleteComment = (postId, commentID) => async dispatch => {
+
+    try {
+
+        await axios.delete(`/api/posts/comment/${postId}/${commentID}`);
+
+        dispatch({
+            type: REMOVE_COMMENT,
+            payload: commentID
+        });
+
+        dispatch(setAlert('Comment has been removed', 'success'))
+
+    } catch (err) {
+
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}
